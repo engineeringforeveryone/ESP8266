@@ -3,12 +3,9 @@ This repository contains a collection of small ESP8266 projects showcased on my 
 
 Feel free to drop me a message here or on instagram if you have any questions.
 
----
 
 # Buzzer
 The buzzer project contains a series of functions that showcase micropython's built-in pwm control to create with a buzzer.
-
----
 
 # RFID
 This project is a simple access control system that rejects or accepts a detected card based on its unique identifier (uid). 
