@@ -94,22 +94,65 @@ def alarm(pwm_obj):
     pwm_obj.duty(50)
 
     for i in range(10):
-        freq = 450
+        freq = 100
 
         # climb up
-        while freq < 960:
-            freq += int(0.05*freq)
+        while freq < 1020:
+            freq += 50
             pwm_obj.freq(freq)
             time.sleep(0.02)
         
         # climb down
-        while freq > 450:
-            freq -= int(0.05*freq)
+        while freq > 100:
+            freq -= 50
             pwm_obj.freq(freq)
             time.sleep(0.02)
 
     # silence the speaker
     pwm_obj.duty(0)
+
+def access_granted(pwm_obj):
+
+    pwm_obj.duty(50)
+
+    freq_hi = 600
+    freq_lo = 515
+    pwm_obj.freq(freq_hi)
+    time.sleep(0.1)
+
+    pwm_obj.duty(0)
+    time.sleep(0.4)
+
+    pwm_obj.duty(50)
+
+    pwm_obj.freq(freq_lo)
+    time.sleep(0.1)
+    pwm_obj.freq(freq_hi)
+    time.sleep(0.2)
+
+    pwm_obj.duty(0)
+
+
+def access_denied(pwm_obj):
+
+    pwm_obj.duty(50)
+
+    freq_hi = 600
+    freq_lo = 515
+    pwm_obj.freq(freq_hi)
+    time.sleep(0.1)
+    pwm_obj.duty(0)
+    time.sleep(0.2)
+
+    pwm_obj.duty(50)
+    for i in range(8):
+        pwm_obj.freq(freq_lo)
+        freq_lo -= 20
+        time.sleep(0.12)
+
+    time.sleep(0.6)
+    pwm_obj.duty(0)
+
 
 # function that returns a pwm object on the specified pin
 # used for quick debugging and testing of code
